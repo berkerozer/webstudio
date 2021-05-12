@@ -1,48 +1,16 @@
 package webstudio.html;
 
-import webstudio.utils.Pretier;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class Element implements IElement{
     String tag;
-    ArrayList<String> classes = new ArrayList<String>();
-    ArrayList<String> ids = new ArrayList<String>();
+    String id;
+    ArrayList<String> classList = new ArrayList<String>();
     ArrayList<Element> elements = new ArrayList<Element>();
-    String content;
-
-    public Element(String tag, ArrayList<String> classes, ArrayList<String> ids, ArrayList<Element> elements) {
-        this.tag = tag;
-        this.classes = classes;
-        this.ids = ids;
-        this.elements = elements;
-    }
-
-    public Element(String tag, ArrayList<String> classes, ArrayList<String> ids) {
-        this.tag = tag;
-        this.classes = classes;
-        this.ids = ids;
-    }
-
-    public Element(String tag, ArrayList<String> classes) {
-        this.tag = tag;
-        this.classes = classes;
-    }
 
     public Element(String tag) {
         this.tag = tag;
-    }
-
-    public Element() {
-
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getTag() {
@@ -53,64 +21,78 @@ public abstract class Element implements IElement{
         this.tag = tag;
     }
 
-    public ArrayList<String> getClasses() {
-        return classes;
+    public String getHtmlId() {
+        return id == null ? "" : " id='" + id + "' ";
     }
 
-    public void setClasses(ArrayList<String> classes) {
-        this.classes = classes;
+    public String getId() {
+        return id;
     }
 
-    public void addClass(String classTag) {
-        this.classes.add(classTag);
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public ArrayList<String> getIds() {
-        return ids;
+    /**
+     * Returns <tt>true</tt> if this list contains the specified element.
+     * More formally, returns <tt>true</tt> if and only if this list contains
+     * at least one element <tt>e</tt> such that
+     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
+     */
+    public String getHtmlClass() {
+        String htmlClass = "";
+        if (classList.size() != 0){
+            htmlClass += " class='";
+            for (int i = 0; i < classList.size(); i++) {
+                if (i == classList.size() - 1){
+                    htmlClass += classList.get(i);
+                }else {
+                    htmlClass += classList.get(i) + " ";
+                }
+            }
+            htmlClass += "' ";
+        }
+        return htmlClass;
     }
 
-    public void setIds(ArrayList<String> ids) {
-        this.ids = ids;
+    public ArrayList<String> getClassList() {
+        return classList;
     }
 
-    public ArrayList<Element> getelements() {
+    public void setClassList(String[] classList) {
+        this.classList.addAll(Arrays.asList(classList));
+    }
+
+    public void addClass(String htmlClass){
+        this.classList.add(htmlClass);
+    }
+
+    public String getInsideHtml(){
+        String content = "";
+        for (Element element : elements){
+            content += element.toString();
+        }
+        return content;
+    }
+
+    public ArrayList<Element> getElements() {
         return elements;
     }
 
-    public void setelements(ArrayList<Element> elements) {
+    public void setElements(ArrayList<Element> elements) {
         this.elements = elements;
     }
 
-    public void addelements(Element elements) {
-        this.elements.add(elements);
+    public void setElementList(Element[] elementList) {
+        this.elements.addAll(Arrays.asList(elementList));
     }
 
-    @Override
-    public String toHtml() {
-        return "Element{" +
-                "tag='" + tag + '\'' +
-                ", classes=" + classes +
-                ", ids=" + ids +
-                ", elements=" + elements +
-                '}';
+    public void addElement(Element element){
+        this.elements.add(element);
     }
 
     @Override
     public String toString() {
-        String start = String.format("\n<%s>\n", tag);
-
-        if (content != null){
-            //start += ("\n\t" + content);
-        }
-
-        for (int i = 0; i < elements.size(); i++){
-            start += (Pretier.formatHtml(elements.get(i)));
-        }
-
-        return String.format(start + "\n</%s>", tag);
-
-
-
-
+        return "<" + tag + getHtmlId() + getHtmlClass() + ">" + getInsideHtml() + "</" + tag + ">";
     }
 }

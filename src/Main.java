@@ -1,31 +1,26 @@
+import webstudio.elements.title;
 import webstudio.html.*;
-
-import java.util.ArrayList;
+import webstudio.utils.Pretier;
 
 public class Main {
     public static void main(String[] args) {
 
+        Head head = new Head("Berker Özer Personal Blog", "Developers Blog");
+        Body body = new Body(new HtmlElement[]{
+                new HtmlElement("div", new Element[] {
+                        new title(1,"test başlık")
+                }),
+                new HtmlElement("div", new Element[] {
+                        new title(6,"Test Başlık")
+                })
+        });
 
         Html html = new Html();
-        Body body = new Body();
-
-
-        HtmlElement div1 = new HtmlElement("div");
-        HtmlElement div2 = new HtmlElement("label");
-
-        div1.setContent("berker özer");
-        div1.addelements(div2);
-        body.addelements(div1);
-
-
-
-
-        //Head head = new Head("test", "test");
-
-        //System.out.println(head);
-
+        html.setHead(head);
         html.setBody(body);
-        System.out.println(html);
-    }
 
+        System.out.println(Pretier.formatHtml(html.toString()));
+
+
+    }
 }

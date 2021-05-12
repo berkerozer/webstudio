@@ -7,11 +7,19 @@ public class Html implements IElement {
     private Head head;
     private Body body;
 
-    public Html() {
+    public Html() {}
 
-        this.head = new Head("test","test");
-        this.body = new Body();
+    public Html(Head head) {
+        this.head = head;
+    }
 
+    public Html(Body body) {
+        this.body = body;
+    }
+
+    public Html(Head head, Body body) {
+        this.head = head;
+        this.body = body;
     }
 
     public Body getBody() {
@@ -22,14 +30,21 @@ public class Html implements IElement {
         this.body = body;
     }
 
-    @Override
-    public String toHtml() {
-        return head.toHtml();
+    public Head getHead() {
+        return head;
+    }
+
+    public void setHead(Head head) {
+        this.head = head;
     }
 
     @Override
     public String toString() {
-        return "<html>\n"+ head.toString() + body.toString() + "\n</html>";
+        return "<!DOCTYPE html>" +
+                "<html>" +
+                (head==null ? "<head></head>" : head.toString()) +
+                (body==null ? "<body></body>" : body.toString()) +
+                "</html>";
     }
 
     public void build() {

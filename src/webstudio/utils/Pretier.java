@@ -1,16 +1,13 @@
 package webstudio.utils;
 
-import webstudio.html.Element;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public interface Pretier {
-    public static String formatHtml(Element element){
+    static String formatHtml(String element){
 
-        String[] splited = element.toString().split("\\r?\\n");
-        String combined = "";
-        for ( String i : splited){
-            combined += i;
-        }
+        Document doc = Jsoup.parse(element);   // pretty print HTML
+        return doc.toString();
 
-        return combined;
     }
 }
