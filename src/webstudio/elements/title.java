@@ -9,8 +9,15 @@ public class title extends Element {
 
     public title(int size, String content) {
         super("h" + size);
-        this.size = size;
         this.content = content;
+        if (size<7 && size>0){
+            this.size = size;
+            super.setTag("h"+size);
+        }
+        else {
+            super.setTag("h"+this.size);
+        }
+
     }
 
     @Override

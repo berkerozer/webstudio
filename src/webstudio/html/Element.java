@@ -33,12 +33,6 @@ public abstract class Element implements IElement{
         this.id = id;
     }
 
-    /**
-     * Returns <tt>true</tt> if this list contains the specified element.
-     * More formally, returns <tt>true</tt> if and only if this list contains
-     * at least one element <tt>e</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     */
     public String getHtmlClass() {
         String htmlClass = "";
         if (classList.size() != 0){
@@ -87,8 +81,8 @@ public abstract class Element implements IElement{
         this.elements.addAll(Arrays.asList(elementList));
     }
 
-    public void addElement(Element element){
-        this.elements.add(element);
+    public void addElement(Element element,int index){
+        this.elements.add(index,element);
     }
 
     @Override
