@@ -81,6 +81,10 @@ public abstract class Element implements IElement{
         this.elements.addAll(Arrays.asList(elementList));
     }
 
+    public void addElement(Element element){
+        this.elements.add(element);
+    }
+
     public void addElement(Element element,int index){
         this.elements.add(index,element);
     }
