@@ -17,8 +17,9 @@ public abstract class Element implements IElement{
         return tag;
     }
 
-    public void setTag(String tag) {
+    public Element setTag(String tag) {
         this.tag = tag;
+        return this;
     }
 
     public String getHtmlId() {
@@ -81,12 +82,22 @@ public abstract class Element implements IElement{
         this.elements.addAll(Arrays.asList(elementList));
     }
 
-    public void addElement(Element element){
+    public Element addElement(Element element){
         this.elements.add(element);
+        return this;
     }
 
     public void addElement(Element element,int index){
         this.elements.add(index,element);
+    }
+
+    public Element Padding(String value){
+        addClass("p-"+value);
+        return this;
+    }
+
+    public String cssString(){
+        return "";
     }
 
     @Override
