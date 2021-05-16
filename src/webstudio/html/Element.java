@@ -9,6 +9,9 @@ public abstract class Element implements IElement{
     ArrayList<String> classList = new ArrayList<String>();
     ArrayList<Element> elements = new ArrayList<Element>();
 
+    public Element() {
+    }
+
     public Element(String tag) {
         this.tag = tag;
     }
@@ -91,6 +94,8 @@ public abstract class Element implements IElement{
 
     @Override
     public String toString() {
+
         return "<" + tag + getHtmlId() + getHtmlClass() + ">" + getInsideHtml() + "</" + tag + ">";
+
     }
 }

@@ -1,3 +1,4 @@
+import webstudio.elements.htmlString;
 import webstudio.elements.title;
 import webstudio.html.*;
 import webstudio.utils.Pretier;
@@ -16,9 +17,26 @@ public class Main {
                         new title(1,"test başlık")
                 }),
                 new HtmlElement("div", new Element[] {
-                        new title(6,"Test Başlık")
+                        new htmlString("Bu bir test denemesidir")
+                }),
+                new HtmlElement("div", new Element[] {
+                        new htmlString("p","Bu bir test denemesidir")
                 })
         });
+
+
+        HStack({
+                VStack({
+                        input()
+                        text().padding(5).height(100)
+                })
+                VStack({
+                        img()
+                })
+                VStack({
+
+                })
+        })
 
         Html html = new Html();
         html.setHead(head);
