@@ -25,19 +25,6 @@ public class Main {
         });
 
 
-        HStack({
-                VStack({
-                        input()
-                        text().padding(5).height(100)
-                })
-                VStack({
-                        img()
-                })
-                VStack({
-
-                })
-        })
-
         Html html = new Html();
         html.setHead(head);
         html.setBody(body);
